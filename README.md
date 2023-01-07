@@ -1,1 +1,1 @@
-# socket-programming-c
+# Basic Socket Programming with C Language.
