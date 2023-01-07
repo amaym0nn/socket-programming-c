@@ -19,7 +19,7 @@ int main() {
             socklen_t clientLen = sizeof(clientadd);
                 sockadd.sin_addr.s_addr = inet_addr("127.0.0.1"); // local ip 
                 sockadd.sin_family = AF_INET;   // TCP 
-                sockadd.sin_port = htons(4000); // port --> 9000
+                sockadd.sin_port = htons(4000); // port --> 4000
             int bnd = bind(sck, (struct sockaddr*)&sockadd, sockLen);
                 if (bnd < 0) {
                     printf("ERROR | %s\n", strerror(errno));
