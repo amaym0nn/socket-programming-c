@@ -7,8 +7,8 @@ section .data
 	msg2: db "System is Big Endian"
 	str2: equ $ - msg2
 
-; Dikkat edilmesi gereken şey ise, Little-Endian'da 1 bytelık değerin yazılması 1 ile başlanmasıdır. Dolasıyla bu 
-; programda 1 byte değer üzerinden kontrol yapılarak sistemin Big mi yoksa Little mi olduğun anlaşılacaktır. 
+; Dikkat edilmesi gereken şey ise, Little-Endian'da 1 bytelık değerin yazılması 1 ile başlanmasıdır. Dolasıyla bu programda 1 byte değer üzerinden kontrol 
+; yapılarak sistemin Big mi yoksa Little mi olduğun anlaşılacaktır. 
 
 section .text
 	global _start
