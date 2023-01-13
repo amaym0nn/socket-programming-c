@@ -1,1 +1,1 @@
-# Basic Socket Programming with C Language.
+## Linux ortamında C ile basit Socket Programlama.
