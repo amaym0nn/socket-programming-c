@@ -8,10 +8,10 @@
 int main() {
     int scket = socket(AF_INET, SOCK_STREAM, 0);
         if (scket == -1) {
-            printf("ERROR | %s\n", strerror(errno));
+            printf("ERROR | Failed to Create Socket!");
         }
         else {
-             printf("Socket Basariyla Olusturuldu!\n");
+             printf("SUCCESSFUL | Socket Created!\n");
         }
          struct sockaddr_in sockadd;
             sockadd.sin_addr.s_addr = inet_addr("127.0.0.1");
@@ -22,39 +22,41 @@ int main() {
             // Bind İşlemi 
             int bnd = bind(scket, (struct sockaddr*)&sockadd, sizeof(sockadd));
                 if (bnd == -1) {
-                    printf("ERROR | Bind İşlemi Başarısız!\n");
+                    printf("ERROR | Binding Failed...!\n");
                 }
                 else {
-                    printf("SUCCESSFUL | Bind İşlemi Başarılı!\n");
+                    printf("SUCCESSFUL | Binding Successful!\n");
                 }
             // Port Dinlemesi
             int lstn = listen(scket, 1);
                 if (lstn == -1) {
-                    printf("ERROR | Port Dinleme Başarısız!!\n");
+                    printf("ERROR | Port Listening Failed...!\n");
                 }
                 else {
-                    printf("SUCCESSFUL | Port Başarıyla Dinleniyor! Port: %d\n", ntohs(sockadd.sin_port));
+                    printf("SUCCESSFUL | Port Listening Successful! Port: %d\n", ntohs(sockadd.sin_port));
                 }
-                    // Buradan itibaren Client kodlaması yapılacaktır. Amaç, client'tan gelecek mesajı alıp ekrana bastırmak.
+                    /*
+                        Client coding will be done from here. The aim is to receive the message from the client and print it on the screen.
+                    */
                     struct sockaddr_in client;
                     socklen_t clientLen = sizeof(client);
-                        // Client'tan gelen isteği kabul et
+                        // Accept the request from the client
                         int cAccept = accept(scket, (struct sockaddr*)&client, &clientLen);
                             if (cAccept == -1) {
-                                printf("ERROR | İstek Kabul Edilemedi!\n");
+                                printf("ERROR | Request not Accepted!\n");
                             }
                             else {
-                                printf("SUCCESSFUL | İstek Kabul Edildi!\n");
+                                printf("SUCCESSFUL | The Request has been successfully Accepted!\n");
                             }
-                            // Client'tan gelecek mesaj için yer ayır
+                            // Reserve space for message from client
                             char clMessage[1024];
                             memset(clMessage, '\0', strlen(clMessage));
                                 int r = recv(cAccept, clMessage, sizeof(clMessage), 0);
                                     if (r == -1) {
-                                        printf("ERROR | Mesaj Alınamadı!\n");
+                                        printf("ERROR | Message not Received!\n");
                                     }
                                     else {
-                                        printf("SUCCESSFUL | Mesaj Başarıyla Alındı! Mesaj: %s\n", clMessage);
+                                        printf("SUCCESSFUL | Messsage Received. Message: %s\n", clMessage);
                                     }
                             close(cAccept);
                             close(scket);

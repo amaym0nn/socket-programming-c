@@ -8,33 +8,33 @@
 int main() {
         int scket = socket(AF_INET, SOCK_STREAM, 0);
         if (scket == -1) {
-            printf("ERROR | Socket Oluşturulamadı!", strerror(errno));
+            printf("ERROR | Failed to Create Socket\n");
         }
         else {
-             printf("SUCCESSFUL | Socket Başarıyla Oluşturuldu!\n");
+             printf("SUCCESSFUL | Socket Created!\n");
         }
          struct sockaddr_in sockadd;
             sockadd.sin_addr.s_addr = inet_addr("127.0.0.1");
             sockadd.sin_family = AF_INET;
             sockadd.sin_port = htons(4500);
-                // Bağlantıyı Gerçekleştir
+                // Make Connection
                 int cnt = connect(scket, (struct sockaddr*)&sockadd, sizeof(sockadd));
                     if (cnt == -1) {
-                        printf("ERROR | Bağlantı Başarısız Oldu!\n");
+                        printf("ERROR | Connection Failed...!\n");
                     }
                     else {
-                        printf("SUCCESSFUL | Bağlantı Başarılı!\n");
+                        printf("SUCCESSFUL | Connection Successful!\n");
                     }
-                    // Server'a Mesaj göndermek için input al.
+                    // Get an input to send a message to the server.
                     char svMessage[1024];
-                        printf("Mesaj Giriniz: ");
+                        printf("Enter Message: ");
                         fgets(svMessage, 1024, stdin);
-                            // Server'a alınan mesajı gönder.
+                            // Send received Message to Server.
                             int snd = send(scket, svMessage, strlen(svMessage), 0);
                                 if (snd == -1) {
-                                    printf("ERROR | Mesaj Gönderilemedi!\n");
+                                    printf("ERROR | Message could not be Sent!\n");
                                 }
                                 else {
-                                    printf("SUCCESSFUL | Mesaj Gönderildi!\n");
+                                    printf("SUCCESSFUL | Message Sent!\n");
                                 }
 }

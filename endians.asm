@@ -1,4 +1,4 @@
-; NASM Assembly kullanılarak sistemin Big-Endian mı yoksa Little-Endian mı olduğunu gösteren Assembly Programı.
+; Assembly program that shows whether the system is Big-Endian or Little-Endian using NASM assembly
 
 section .data
 	n: db 1
@@ -7,24 +7,25 @@ section .data
 	msg2: db "System is Big Endian"
 	str2: equ $ - msg2
 
-; Bilinmesi gereken şey ise, Little-Endian'da 1 bytelık değerin yazılması 1 ile başlanmasıdır. Dolasıyla bu programda 1 byte değer üzerinden kontrol 
-; yapılarak sistemin Big mi yoksa Little mi olduğun anlaşılacaktır. 
+;The thing to know is that writing a 1-byte value in Little-Endian starts with 1. Therefore, in this program, by controlling 
+; 1 byte value, it will be understood whether the system is Big or Little.
 
 section .text
 	global _start
 
 _start:
-	mov al, byte [n] ; burada n değişken adresin içerisindeki değerin ilk byte'tını alır ve al register'a koyar.
-	cmp al,1 ; burada ise alınan ilk byte'ın 1 olup olunmadığı kontrol edilir.
-	je _little ; eğer alınan ilk byte 1 ise _little label'a git.
-	jne _big   ; değil ise _big label'a git.
+	mov al, byte [n] ; Where n takes the first byte of the value in the variable address and puts it in the al register.
+	cmp al,1 ; Here, it is checked whether the first byte received is 1 or not.
+	je _little ; If the first byte received is 1, go to the _little label. 
+	jne _big   ; if not, go to _big label.
 
-	;programdan çık.
+	; exit program 
 	mov eax,1
 	xor ebx,ebx
 	int 0x80
 
 _little:
+	; print msg1 
 	mov eax,4
 	mov ebx,1
 	mov ecx,msg1
@@ -36,6 +37,7 @@ _little:
 	int 0x80
 
 _big:
+	; print msg2
 	mov eax,4
 	mov ebx,1
 	mov ecx,msg2
