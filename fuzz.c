@@ -38,7 +38,8 @@ int main() {
                              for(; i < nm + 8; i++) {
                                 /*
                                     This loop adds the value "A" to the buff variable up to nm+8 (108).
-                                    But when he gets out of this cycle and comes back, that increase is doubled. For example, after increasing 100 times in this loop and exiting the loop, 
+                                    But when he gets out of this cycle and comes back, that increase is doubled. 
+                                    For example, after increasing 100 times in this loop and exiting the loop, 
                                     nm will be 200 when it comes back to this loop after increasing it 100 times. This way it will increase. 
                                 */
                                 strcat(buff, "A"); // Here it adds nm+8 times A to the buff variable. For example, the result would be something like: TRUN /.:/AAAAAAAAAAAAAA.
