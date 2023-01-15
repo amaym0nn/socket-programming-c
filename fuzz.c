@@ -7,6 +7,13 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+/*
+    Coder: amaym0nn
+    A simple fuzzing script in C
+
+*/
+
+
 int main() {
     char buff[1000] = "TRUN /.:/";
     int nm = 100;
@@ -29,22 +36,23 @@ int main() {
                           }
                             int i = 0;
                              for(; i < nm + 8; i++) {
-                                /* Bu döngüde nm+8 (108) kadar buff değişkenine "A" değerini ekler. 
-                                Fakat bu döngüden çıkıp tekrar geldiğinde  bu arttırma işlemi iki katına çıkar.
-                                Mesela bu döngüde 100 kere arttırıp döngüden çıktıktan sonra nm'yi 100 kere arttırdıktan 
-                                sonra tekrar bu döngüye geldiğinde 200 olacaktır. Böyle böyle artacaktır.
+                                /*
+                                    This loop adds the value "A" to the buff variable up to nm+8 (108).
+                                    But when he gets out of this cycle and comes back, that increase is doubled. For example, after increasing 100 times in this loop and exiting the loop, 
+                                    nm will be 200 when it comes back to this loop after increasing it 100 times. This way it will increase. 
                                 */
-                                strcat(buff, "A");  // Burada buff değişkenine nm+8 kere A değerini ekler. Mesela sonuç şu şekilde olur: TRUN /.:/AAAAAAAAAAAAA gibi. 
+                                strcat(buff, "A"); // Here it adds nm+8 times A to the buff variable. For example, the result would be something like: TRUN /.:/AAAAAAAAAAAAAA.
                                 printf("Buff Lenght: %d\n", strlen(buff));  // Burada program hangi uzunlukta crash verdiğini görebilmek için buff değişkenin sürekli aktif olarak uzunluğu ekrana bastırılıyor
                              }
-                             int wr = write(scket, buff, sizeof(buff)); // burada ise write komutu kullanılarak oluşturulan sockete buff değişkeni gönderir. 
+                             int wr = write(scket, buff, sizeof(buff)); // Here, the length of the buff variable is actively suppressed to the screen so that the program can see how long it crashes.
                                 if (wr == -1) {
-                                    printf("Crashed At");
+                                    printf("Crashed At......");
                                     close(scket);
                                 }
                              nm += 100; 
                              sleep(1);
                 }
+
                 
         }
 }
