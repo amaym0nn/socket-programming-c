@@ -10,7 +10,7 @@
 /*
     Coder: amaym0nn
     A simple fuzzing script in C
-
+    for vulnserver
 */
 
 
